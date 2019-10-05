@@ -1,0 +1,4 @@
+.NewTodoForm {
+  display: flex;
+  flex-wrap: wrap;
+}
