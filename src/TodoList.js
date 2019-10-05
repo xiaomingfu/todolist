@@ -8,6 +8,7 @@ class TodoList extends Component {
         this.state = { todos: [] };
         this.create = this.create.bind(this);
         this.remove = this.remove.bind(this);
+
     }
     create(newOne) {
         this.setState({
