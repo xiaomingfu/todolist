@@ -4,32 +4,31 @@ import uuid from 'uuid/v4'
 class NewTodoForm extends Component {
     constructor(props) {
         super(props);
-        this.state = { newTodo: "" };
-        this.changeHandle = this.changeHandle.bind(this);
-        this.submitHandle = this.submitHandle.bind(this);
+        this.state = { task: "" };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    changeHandle(e) {
+    handleChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
-    submitHandle(e) {
+    handleSubmit(e) {
         e.preventDefault();
         const newtodo = { ...this.state, id: uuid() };
         this.props.createTodo(newtodo);
-        this.setState({ newTodo: "" });
+        this.setState({ task: "" });
     }
     render() {
         return (
-            <form onSubmit={this.submitHandle}>
-                <label htmlFor="todo">New Todo</label>
+            <form onSubmit={this.handleSubmit}>
+                <label htmlFor="task">New Todo</label>
                 <input
-                    onChange={this.changeHandle}
                     type="text"
-                    name="newTodo"
-                    id="todo"
-                    value={this.state.newTodo}
-                    placehoder="New Todo"
-                >
-                </input>
+                    placeholder="New Todo"
+                    name="task"
+                    id="task"
+                    value={this.state.task}
+                    onChange={this.handleChange}
+                />
                 <button>ADD TODO</button>
             </form>
         )
