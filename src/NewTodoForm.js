@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import uuid from 'uuid/v5'
+import uuid from 'uuid/v4'
 
 class NewTodoForm extends Component {
     constructor(props) {
@@ -9,14 +9,12 @@ class NewTodoForm extends Component {
         this.submitHandle = this.submitHandle.bind(this);
     }
     changeHandle(e) {
-        this.setState({
-            [e.target.name]: e.target.value,
-        })
+        this.setState({ [e.target.name]: e.target.value })
     }
     submitHandle(e) {
         e.preventDefault();
-        this.props.createTodo(this.state);
-
+        const newtodo = { ...this.state, id: uuid() };
+        this.props.createTodo(newtodo);
         this.setState({ newTodo: "" });
     }
     render() {
